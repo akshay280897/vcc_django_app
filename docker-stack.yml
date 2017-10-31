@@ -22,7 +22,7 @@ services:
       DATABASE_PASSWD: secret123
       DATABASE_HOST: database
     ports:
-      - 8000:8000
+      - "8000:8000"
     command: ["./wait-for-it.sh", "database:5432", "--", "./docker-entry.sh"]
     depends_on:
       - database

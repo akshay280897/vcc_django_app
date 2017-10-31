@@ -25,7 +25,7 @@ SECRET_KEY = 'e&3!l_^%szw-h_bj3l65$(s6%ig4&#_j*ij)#%xr3ik3v8e+cj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # get credentials from env variables
 def get_env(var):
