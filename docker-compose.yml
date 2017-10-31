@@ -1,14 +1,21 @@
 version: '3'
 
 services:
-  db:
+  database:
     image: postgres
+    environment:
+      POSTGRES_DB: blogdb
+      POSTGRES_USER: bloguser
+      POSTGRES_PASSWORD: secret123
   web:
     build: .
-    command: bash -c "python3 manage.py makemigrations; python3 manage.py migrate; python3 manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/code
+    environment:
+      DATABASE_NAME: blogdb
+      DATABASE_USER: bloguser
+      DATABASE_PASSWD: secret123
+      DATABASE_HOST: database
     ports:
-      - "8000:8000"
+      - 8000:8000
+    command: ["./wait-for-it.sh", "database:5432", "--", "./docker-entry.sh"]
     depends_on:
-      - db
+      - database
