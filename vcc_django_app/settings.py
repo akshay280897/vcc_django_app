@@ -25,9 +25,11 @@ SECRET_KEY = 'e&3!l_^%szw-h_bj3l65$(s6%ig4&#_j*ij)#%xr3ik3v8e+cj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-
+# get credentials from env variables
+def get_env(var):
+    return os.environ.get(var)
 # Application definition
 
 INSTALLED_APPS = [
@@ -77,16 +79,11 @@ WSGI_APPLICATION = 'vcc_django_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blogdb',
-        'USER': 'djangouser',
-        'PASSWORD': 'pasword123',
-        'HOST': 'localhost',
-        'PORT': '9999',
-        #'ENGINE': 'django.db.backends.postgresql',
-        #'NAME': 'postgres',
-        #'USER': 'postgres',
-        #'HOST': 'db',
-        #'PORT': 5432,
+        'NAME': get_env("DATABASE_NAME") or 'blogdb',
+        'USER': get_env("DATABASE_USER") or 'djangouser',
+        'PASSWORD': get_env("DATABASE_PASSWD") or 'password123',
+        'HOST': get_env("DATABASE_HOST") or 'localhost',
+        'PORT': '',
     }
 }
 
