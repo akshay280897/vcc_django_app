@@ -7,7 +7,7 @@ Simple Django app featuring steps given in the [Django Girls Tutorial](https://t
 - Build the image 
 
   ```sh
-  $ sudo docker build -t someone/django-blog 
+  $ sudo docker build -t someone/django-blog .
   ```
 
 - Run using docker-compose
